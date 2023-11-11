@@ -19,6 +19,83 @@ body {
     #81B2D9 0%,
     #EFF5FA 100%
   );
+  background-repeat: no-repeat;
   padding: 0;
   margin: 0;
+  height: 100vh;
 }
+/*
+
+.hidden {
+  display: none;
+}
+
+.header-banner {
+
+}
+
+h1 {
+
+}
+
+.welcome-message {
+
+}
+
+#accountButton {
+
+}
+
+.button{
+  width: 50px;
+  background-color: #81B2D9;
+  color: #EFF5FA;
+  border: 0;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #FFC533;
+}
+
+label,
+input {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+}
+
+#submitButton {
+
+}
+
+.trip-info {
+
+}
+
+.detail-destination {
+
+}
+
+.detail-total-cost{
+
+}
+
+.button-container {
+
+}  
+
+#pendingTripBtn { 
+
+}
+
+#pastTripBtn {
+
+}
+
+.total-spent {
+
+}
+
+*/
