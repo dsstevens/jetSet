@@ -1,3 +1,24 @@
+/* CSS HEX */
+/* 
+
+--imperial-red: #FF4747;
+--mikado yellow: #FFC533;
+--alice blue #EFF5FA;
+--columbia blue: #C0D8EC;
+--carolina blue: #81B2D9;
+--rich-black: #031110; 
+
+--ruddy-blue: #72a8d5ff;
+--indigo-dye: #064a75ff;
+*/
+
 body {
-  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+  font-family: 'Raleway', sans-serif;
+  background-image: linear-gradient(
+    to top,
+    #81B2D9 0%,
+    #EFF5FA 100%
+  );
+  padding: 0;
+  margin: 0;
 }
