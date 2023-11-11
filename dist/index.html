@@ -25,7 +25,7 @@
           <input type="date" id="end-date" name="end-date" required>
           <label for="destination">Destination:</label>
           <select id="destination" name="destination">
-              <!-- Options will be populated here -->
+              <!-- Options will be populated here from destinations array-->
           </select>
           <label for="number-travelers">Number of Travelers:</label>
           <input type="number" id="number-travelers" name="number-travelers" min="1" required>
@@ -44,7 +44,15 @@
       </div>
     </article>
   </main>
- 
+  <aside>
+    <button id="pending-trips">Pending Trips</button>
+    <button id="future-trips">Future Trips</button>
+    <button id="past-trips">Past Trips</button>
+    <h3>Total Money Spent This Year: <span id="total-spent"></span></h3>
+    <ul id="trip-list">
+        <!-- List items will be populated here -->
+    </ul>
+  </aside>
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
 
