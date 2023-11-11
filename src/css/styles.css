@@ -13,7 +13,7 @@
 */
 
 * {
-  border: 2px solid #FF4747;
+  border: 1px solid #FF4747;
 }
 
 body {
@@ -66,14 +66,13 @@ h1 {
 button:hover {
   background-color: #FFC533;
 }
-
-article {
+main {
+  display: flex;
+  flex-direction:column;
   width: 40%
 }
-
-main {
-  width: 40%;
-  height: 80%
+article {
+  width: 100%
 }
 
 form {
@@ -102,7 +101,19 @@ input {
 }
 
 p {
-  margin: 0px
+  margin: 3px
+}
+
+.trip-container {
+  display:flex;
+  height: 100%;
+  justify-content: space-around;
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
+  width: 50%
 }
 /*
 
