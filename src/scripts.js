@@ -20,6 +20,31 @@ const pendingTripBtn = document.querySelector('#pendingTripBtn');
 const pastTripBtn = document.querySelector('#pastTripBtn');
 const totalSpent = document.querySelector('.total-spent');
 
+//EVENT LISTENERS
+
+accountButton.addEventListener('click', function() {
+  
+  console.log('Account button clicked!');
+});
+
+submitButton.addEventListener('click', function() {
+  
+  console.log('Submit button clicked!');
+});
+
+pendingTripBtn.addEventListener('click', function() {
+  
+  console.log('Pending Trip button clicked!');
+});
+
+pastTripBtn.addEventListener('click', function() {
+  
+  console.log('Past Trip button clicked!');
+});
+
+
+
+
 //access the individual user's trips for dashboard w harcoded user
 //user
 // {
