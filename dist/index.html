@@ -6,55 +6,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>jetSet</title>
 </head>
-<body>
-  <header>
-    <div class="header-banner" role="banner" aria-label="Main banner">
-      <img src="./images/turing-logo.png" alt="turing logo">
-      <h1 id="jetSet-name">jetSet</h1>
-      <h2 class="welcome-message">Welcome</h2>
-      <button>Account</button>
-    </div>
-  </header>
-  <main>
-    <article>
-      <form id="travel-form" aria-labelledby="form-heading">
-          <h3 id="form-heading">Plan Your Trip</h3>
-          <label for="start-date">Start Date:</label>
-          <input type="date" id="start-date" name="start-date" required>
-          <label for="end-date">End Date:</label>
-          <input type="date" id="end-date" name="end-date" required>
-          <label for="destination">Destination:</label>
-          <select id="destination" name="destination">
-              <!-- Options will be populated here from destinations array-->
-          </select>
-          <label for="number-travelers">Number of Travelers:</label>
-          <input type="number" id="number-travelers" name="number-travelers" min="1" required>
-          <button type="submit">jetSet, go!</button>
-      </form>
-    </article>
-    <article>
-      <h3>Trip Details</h3>
-      <div class="trip-info">
-          <p>Destination: <span id="detail-destination"></span></p>
-          <p>Flight Cost: <span id="detail-flight-cost"></span></p>
-          <p>Living Expenses: <span id="detail-daily-expenses"></span></p>
-          <p>Agent Fee: <span id="detail-agent-fee"></span></p>
-          <p>Total: <span id="detail-total"></span></p>
-          <!-- Additional details here -->
+<!-- Login -->
+  <body>
+    <header>
+      <div class="header-banner" role="banner" aria-label="Main banner">
+        <img src="./images/turing-logo.png" alt="turing logo">
+        <h1 id="jetSet-name">jetSet</h1>
+        <h2 class="welcome-message">Welcome</h2>
+        <button>Account</button>
       </div>
-    </article>
-  </main>
-  <aside>
-    <button id="pending-trips">Pending Trips</button>
-    <button id="future-trips">Future Trips</button>
-    <button id="past-trips">Past Trips</button>
-    <h3>Total Money Spent This Year: <span id="total-spent"></span></h3>
-    <ul id="trip-list">
-        <!-- List items will be populated here -->
-    </ul>
-  </aside>
-  <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
-  <script src="bundle.js"></script>
-
-</body>
+    </header>
+    <main>
+      <article>
+        <form id="travel-form" aria-labelledby="form-heading">
+            <h3 id="form-heading">Plan Your Trip</h3>
+            <label for="start-date">Start Date:</label>
+            <input type="date" id="start-date" name="start-date" required>
+            <label for="end-date">End Date:</label>
+            <input type="date" id="end-date" name="end-date" required>
+            <label for="number-travelers">Number of Travelers:</label>
+            <input type="number" id="number-travelers" name="number-travelers" min="1" required>
+            <label for="destination">Destination:</label>
+            <select id="destination" name="destination">
+                <!-- Options will be populated here from destinations via innerHTML-->
+            </select>
+            <button class="submit-button" type="submit">jetSet, go!</button>
+        </form>
+      </article>
+      <article>
+        <h3>Trip Details</h3>
+        <div class="trip-info">
+            <p>Destination: <span id="detail-destination"></span></p>
+            <p>Estimated Cost: <span id="detail-total-cost"></span></p>
+            <!-- Destination image here -->
+        </div>
+      </article>
+    </main>
+    <aside>
+      <button id="pending-trips">Pending Trips</button>
+      <button id="future-trips">Future Trips</button>
+      <button id="past-trips">Past Trips</button>
+      <h3>Total Money Spent This Year: <span id="total-spent"></span></h3>
+      <ul id="trip-list">
+          <!-- List items will be populated here -->
+      </ul>
+    </aside>
+    <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
+    <script src="bundle.js"></script>
+  </body>
 </html>
