@@ -8,13 +8,31 @@
 </head>
 <body>
   <header>
-    <div class="banner" role="banner" aria-label="Main banner">
+    <div class="header-banner" role="banner" aria-label="Main banner">
       <img src="./images/turing-logo.png" alt="turing logo">
-      <h1 id="app-name">jetSet</h1>
-      <h2>Welcome</h2>
+      <h1 id="jetSet-name">jetSet</h1>
+      <h2 class="welcome-message">Welcome</h2>
       <button>Account</button>
     </div>
   </header>
+  <main>
+    <article>
+      <form id="travel-form" aria-labelledby="form-heading">
+          <h3 id="form-heading">Plan Your Trip</h3>
+          <label for="start-date">Start Date:</label>
+          <input type="date" id="start-date" name="start-date" required>
+          <label for="end-date">End Date:</label>
+          <input type="date" id="end-date" name="end-date" required>
+          <label for="destination">Destination:</label>
+          <select id="destination" name="destination">
+              <!-- Options will be populated here -->
+          </select>
+          <label for="number-travelers">Number of Travelers:</label>
+          <input type="number" id="number-travelers" name="number-travelers" min="1" required>
+          <button type="submit">jetSet, go!</button>
+      </form>
+    </article>
+    
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
 
