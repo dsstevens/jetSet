@@ -27,6 +27,7 @@ body {
   padding: 0;
   margin: 0;
   height: 100vh;
+  /* overflow-y: hidden; */
 }
 
 .hidden {
@@ -44,7 +45,8 @@ body {
 }
 
 h1 {
-  font-size: 3.5em;
+  font-size: 4em;
+  font-style:italic;
 }
 
 .welcome-message {
@@ -87,6 +89,7 @@ label,
 input {
   font-family: 'Raleway', sans-serif;
   font-weight: 300;
+  padding: 10px
 }
 /* #submitButton {
 
@@ -110,11 +113,26 @@ p {
   justify-content: space-around;
 }
 
+.button-container {
+  display: flex;
+  justify-content: space-evenly
+}  
+
 aside {
   display: flex;
   flex-direction: column;
-  width: 50%
+  width: 50%;
 }
+
+h3 {
+  margin: 3px
+}
+
+.trip-scroll {
+  height: 100%;
+  overflow-y: scroll;
+}
+
 /*
 
 
@@ -125,11 +143,9 @@ aside {
 .detail-total-cost{
 
 }
+*/
 
-.button-container {
-
-}  
-
+/*
 #pendingTripBtn { 
 
 }
