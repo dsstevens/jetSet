@@ -19,10 +19,11 @@
         <button class="button" id="accountButton">Account</button>
       </div>
     </header>
+    <div class="trip-container">
     <main>
       <article>
-        <form id="travel-form" aria-labelledby="form-heading">
-            <h3 id="form-heading">Plan Your Trip</h3>
+        <form aria-labelledby="form-heading">
+            <h3>Plan Your Trip</h3>
             <label for="startDate">Start Date:</label>
             <input type="date" id="startDate" name="start-date" required>
             <label for="endDate">End Date:</label>
@@ -39,9 +40,9 @@
       <article>
         <h3>Trip Details</h3>
         <div class="trip-info">
-            <p>Destination: <span class="detail-destination"></span></p>
-            <p>Estimated Cost: <span class="detail-total-cost"></span></p>
-            <!-- Destination image here -->
+          <p>Destination: <span class="detail-destination"></span></p>
+          <p>Estimated Cost: <span class="detail-total-cost"></span></p>
+          <!-- Destination image here -->
         </div>
       </article>
     </main>
@@ -52,10 +53,13 @@
         <!-- <button id="future-trips">Future Trips</button> -->
       </div>
       <h3>Total Money Spent This Year: <span class="total-spent"></span></h3>
-      <ul id="trip-list">
+        <section class="trip-scroll">
+          <ul class="trip-list">
           <!-- List items will be populated here -->
-      </ul>
+          </ul>
+        </section>
     </aside>
+    </div>
     <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
     <script src="bundle.js"></script>
   </body>
