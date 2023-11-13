@@ -4,6 +4,9 @@
 import './css/styles.css';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
+import { getAllFetches } from "./apiCalls"
+import { renderTrips } from "./DOMupdates"
+import { filterTripsUser } from "./utils"
 
 //QUERY SELECTORS:
 const welcomeMessage = document.querySelector('.welcome-message');
@@ -19,8 +22,29 @@ const detailTotalCost = document.querySelector('.detail-total-cost');
 const pendingTripBtn = document.querySelector('#pendingTripBtn');
 const pastTripBtn = document.querySelector('#pastTripBtn');
 const totalSpent = document.querySelector('.total-spent');
+// const tripList = document.querySelector('.trip-list')
 
 //EVENT LISTENERS
+let userId = 3
+// for login, invoke a function that finds the userId and pass that thru instead of the hardcoded
+
+const renderDashboard = (userId) => {
+  getAllFetches(userId)
+  .then((allData) => {
+    console.log(allData)
+   let userTrips = filterTripsUser(userId, allData[1].trips)
+   
+   console.log(userTrips)
+   renderTrips(userTrips, allData[2].destinations)
+    //update dom functions
+  })
+}
+
+window.addEventListener("load", renderDashboard(userId));
+
+
+
+
 
 accountButton.addEventListener('click', function() {
   
@@ -33,12 +57,14 @@ submitButton.addEventListener('click', function() {
 });
 
 pendingTripBtn.addEventListener('click', function() {
-  
+  //invoke a function which filters for pending status
+  //invoke a fn which toggles the section to display 
   console.log('Pending Trip button clicked!');
 });
-
+//toggle function which 
 pastTripBtn.addEventListener('click', function() {
-  
+  //invoke a function which filters for past trips
+  //invoke a fn which toggles the section to display
   console.log('Past Trip button clicked!');
 });
 
