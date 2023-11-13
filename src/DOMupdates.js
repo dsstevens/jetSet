@@ -1,4 +1,4 @@
-// import { tripList } from "./scripts"
+import { allDestinations } from "./scripts"
 
 const tripList = document.querySelector('.trip-list');
 
@@ -27,3 +27,14 @@ export const renderTrips = (trips, destinations) => {
 }
 
 //past/pending toggle fn for the buttons to display the trips section
+
+export const dropdownDestinations = allDestinations => {
+  allDestinations.forEach(element => {
+    var option = document.createElement("option");
+    option.text = element.destination;
+    option.value = "myvalue";
+    var select = document.getElementById("destinationList");
+    select.appendChild(option);
+  });
+};
+
