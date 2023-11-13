@@ -5,7 +5,7 @@ import './css/styles.css';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
 import { getAllFetches } from "./apiCalls"
-import { renderTrips } from "./DOMupdates"
+import { renderTrips, dropdownDestinations } from "./DOMupdates"
 import { filterTripsUser } from "./utils"
 
 //QUERY SELECTORS:
@@ -46,6 +46,7 @@ const renderDashboard = (userId) => {
    let userTrips = filterTripsUser(userId, allTrips)
    console.log(userTrips)
    renderTrips(userTrips, allDestinations)
+   dropdownDestinations(allDestinations)
     //update dom functions
   })
 }
@@ -59,6 +60,11 @@ window.addEventListener("load", renderDashboard(userId));
 accountButton.addEventListener('click', function() {
   
   console.log('Account button clicked!');
+});
+
+estimateTripButton.addEventListener('click', function() {
+  
+  console.log('Estimate button clicked!');
 });
 
 submitButton.addEventListener('click', function() {
