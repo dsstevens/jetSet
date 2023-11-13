@@ -3,3 +3,4 @@ export const filterTripsUser = (userId, trips) => {
   return trips.filter(trip => trip.userID === userId) 
 }
 
+// export const 

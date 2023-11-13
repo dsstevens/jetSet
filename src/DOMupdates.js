@@ -1,12 +1,9 @@
-const renderDashboard = () => {
-  //call on functions that iterate individually over specific arrays
- 
-}
+// import { tripList } from "./scripts"
 
 const tripList = document.querySelector('.trip-list');
 
 export const renderTrips = (trips, destinations) => {
-  //innerhtml to tiplist
+  //hardcoded user without past/pending status for trip view
  trips.forEach(element => {
   const matchingDestination = destinations.find(destination => {
     return destination.id === element.destinationID
@@ -24,8 +21,9 @@ export const renderTrips = (trips, destinations) => {
       <dd>${element.duration}</dd>
     </dl>
     <img src=${matchingDestination.image} alt=${matchingDestination.alt}/>
-
   </li>
   `
  })
 }
+
+//past/pending toggle fn for the buttons to display the trips section

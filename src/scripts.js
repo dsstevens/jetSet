@@ -22,9 +22,11 @@ const detailTotalCost = document.querySelector('.detail-total-cost');
 const pendingTripBtn = document.querySelector('#pendingTripBtn');
 const pastTripBtn = document.querySelector('#pastTripBtn');
 const totalSpent = document.querySelector('.total-spent');
+// const tripList = document.querySelector('.trip-list')
 
 //EVENT LISTENERS
 let userId = 3
+// for login, invoke a function that finds the userId and pass that thru instead of the hardcoded
 
 const renderDashboard = (userId) => {
   getAllFetches(userId)
@@ -40,9 +42,8 @@ const renderDashboard = (userId) => {
 
 window.addEventListener("load", renderDashboard(userId));
 
-//alter the eventlistener for promises for login
 
-//could bundle the two arrays of trips and destinations to make the trips property the entire object of destinations so don't need to access a diff array as well
+
 
 
 accountButton.addEventListener('click', function() {
@@ -56,12 +57,14 @@ submitButton.addEventListener('click', function() {
 });
 
 pendingTripBtn.addEventListener('click', function() {
-  
+  //invoke a function which filters for pending status
+  //invoke a fn which toggles the section to display 
   console.log('Pending Trip button clicked!');
 });
-
+//toggle function which 
 pastTripBtn.addEventListener('click', function() {
-  
+  //invoke a function which filters for past trips
+  //invoke a fn which toggles the section to display
   console.log('Past Trip button clicked!');
 });
 
