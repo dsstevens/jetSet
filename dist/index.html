@@ -34,11 +34,14 @@
             <select id="destinationList" name="destination">
                 <!-- Options will be populated here from destinations via innerHTML-->
             </select>
-            <button class="button" id="submitButton"type="submit">jetSet, go!</button>
+            <button class="button" id="estimateTripButton"type="submit">jetSet, go!</button>
         </form>
       </article>
       <article>
+        <div class="submitContainer">
         <h3>Trip Details</h3>
+        <button class="button" id="submitButton"type="submit">Submit Request</button>
+        </div>
         <div class="trip-info">
           <p>Destination: <span class="detail-destination"></span></p>
           <p>Estimated Cost: <span class="detail-total-cost"></span></p>
