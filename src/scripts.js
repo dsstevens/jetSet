@@ -25,6 +25,13 @@ const totalSpent = document.querySelector('.total-spent');
 // const tripList = document.querySelector('.trip-list')
 
 //EVENT LISTENERS
+
+//GLOBAL VARIABLES
+export let currentTraveler
+export let allTravelers
+export let allTrips
+export let allDestinations
+
 let userId = 3
 // for login, invoke a function that finds the userId and pass that thru instead of the hardcoded
 
@@ -32,10 +39,13 @@ const renderDashboard = (userId) => {
   getAllFetches(userId)
   .then((allData) => {
     console.log(allData)
-   let userTrips = filterTripsUser(userId, allData[1].trips)
-   
+    allTravelers = allData[0].travelers
+    allTrips = allData[1].trips
+    allDestinations = allData[2].destinations
+
+   let userTrips = filterTripsUser(userId, allTrips)
    console.log(userTrips)
-   renderTrips(userTrips, allData[2].destinations)
+   renderTrips(userTrips, allDestinations)
     //update dom functions
   })
 }
