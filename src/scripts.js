@@ -4,6 +4,9 @@
 import './css/styles.css';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
+import { getAllFetches } from "./apiCalls"
+import { renderTrips } from "./DOMupdates"
+import { filterTripsUser } from "./utils"
 
 //QUERY SELECTORS:
 const welcomeMessage = document.querySelector('.welcome-message');
@@ -21,6 +24,26 @@ const pastTripBtn = document.querySelector('#pastTripBtn');
 const totalSpent = document.querySelector('.total-spent');
 
 //EVENT LISTENERS
+let userId = 3
+
+const renderDashboard = (userId) => {
+  getAllFetches(userId)
+  .then((allData) => {
+    console.log(allData)
+   let userTrips = filterTripsUser(userId, allData[1].trips)
+   
+   console.log(userTrips)
+   renderTrips(userTrips, allData[2].destinations)
+    //update dom functions
+  })
+}
+
+window.addEventListener("load", renderDashboard(userId));
+
+//alter the eventlistener for promises for login
+
+//could bundle the two arrays of trips and destinations to make the trips property the entire object of destinations so don't need to access a diff array as well
+
 
 accountButton.addEventListener('click', function() {
   
