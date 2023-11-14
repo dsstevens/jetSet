@@ -152,7 +152,21 @@ h4 {
 }
 
 li {
-  font-size:larger
+  font-size:larger;
+  list-style-type: none
+}
+
+dl {
+  display: grid;
+  grid-template-columns: max-content auto;
+}
+
+dt {
+  grid-column-start: 1;
+}
+
+dd {
+  grid-column-start: 2;
 }
 
 /*
