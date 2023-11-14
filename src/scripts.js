@@ -5,8 +5,8 @@ import './css/styles.css';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
 import { getAllFetches } from "./apiCalls"
-import { renderTrips, dropdownDestinations } from "./DOMupdates"
-import { filterTripsUser } from "./utils"
+import { renderTrips, dropdownDestinations, displayMoneySpent } from "./DOMupdates"
+import { filterTripsUser, filterYearlyTrips} from "./utils"
 
 //QUERY SELECTORS:
 const welcomeMessage = document.querySelector('.welcome-message');
@@ -31,9 +31,11 @@ export let currentTraveler
 export let allTravelers
 export let allTrips
 export let allDestinations
+export let userTrips
 
 let userId = 3
 // for login, invoke a function that finds the userId and pass that thru instead of the hardcoded
+//.trim or slice
 
 const renderDashboard = (userId) => {
   getAllFetches(userId)
@@ -43,8 +45,10 @@ const renderDashboard = (userId) => {
     allTrips = allData[1].trips
     allDestinations = allData[2].destinations
 
-   let userTrips = filterTripsUser(userId, allTrips)
+   userTrips = filterTripsUser(userId, allTrips)
    console.log(userTrips)
+   filterYearlyTrips(userTrips)
+   displayMoneySpent(userTrips, allDestinations)
    renderTrips(userTrips, allDestinations)
    dropdownDestinations(allDestinations)
     //update dom functions
@@ -116,7 +120,7 @@ pastTripBtn.addEventListener('click', function() {
 //   }
 
 //access the user name for the dashboard
-//id : 1 and user: user.name
+//id : 3 and user: user.name
 // filter all trips from the destination ids, find one object at a time and push the destinations into a separate array and then do a reduce to 
 //filter and forEach user id and filter from there
 
