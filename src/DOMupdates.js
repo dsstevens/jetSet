@@ -33,7 +33,7 @@ export const dropdownDestinations = allDestinations => {
   allDestinations.forEach(element => {
     var option = document.createElement("option");
     option.text = element.destination;
-    option.value = "myvalue";
+    option.value = element.id;
     var select = document.getElementById("destinationList");
     select.appendChild(option);
   });
