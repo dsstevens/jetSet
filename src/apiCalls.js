@@ -24,14 +24,16 @@ export const getAllFetches = (userId) => {
   ])
 }
 
-export const postnewTrip = (data) => {
+export const postnewTrip = (newTrip) => {
   return fetch('http://localhost:3001/api/v1/trips', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(data),
+      body: JSON.stringify(newTrip),
   })
   .then(response => {
     if(response.ok) {
+      //add the new trip to user trips in api
+      //renderDashboard(userId)
       return response.json();
     } else {
        // FORM HAS MISSING INFO
