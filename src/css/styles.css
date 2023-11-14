@@ -83,13 +83,19 @@ form {
     align-items: flex-start;
     height: 40%;
     width: 100%;
+    align-items: center;
+}
+
+select {
+  font-size: larger
 }
 
 label,
 input {
   font-family: 'Raleway', sans-serif;
-  font-weight: 300;
-  padding: 10px
+  font-weight: 400;
+  padding: 10px;
+  font-size: large
 }
 
 .submitContainer {
@@ -110,7 +116,8 @@ input {
 }
 
 p {
-  margin: 3px
+  margin: 3px;
+  font-size:larger
 }
 
 .trip-container {
@@ -131,12 +138,21 @@ aside {
 }
 
 h3 {
-  margin: 3px
+  margin: 3px;
+  font-size: x-large
+}
+
+h4 {
+  font-size: larger
 }
 
 .trip-scroll {
   height: 100%;
   overflow-y: scroll;
+}
+
+li {
+  font-size:larger
 }
 
 /*
