@@ -1,39 +1,42 @@
-import { dropdownDestinations } from "./DOMupdates"
-import { currentTraveler, allDestinations } from "./scripts"
+import { startDate, endDate } from "./scripts"
 
 export const filterTripsUser = (userId, trips) => {
-  // console.log(userId, trips)
-  //
   return trips.filter(trip => trip.userID === userId) 
 }
 
-/*
-
 let currentTraveler 
 
-let trip = {
-  id: null,
-  userID: null,
-  destinationID: null,
-  date: "",
-  duration: null,
-  status: "pending",
-  suggestedActivities: []
+export const calculateDays = (startDate, endDate) => {
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+  const duration = (end - start) / (1000 * 60 * 60 * 24); // Convert milliseconds to days
+  return duration;
 }
-//** trip keys have "" and look to be strings: JSON
 
-find values of the inputs
-trip as an object created from inputs of the form, 
-when jetSet button is clicked, 
+const formatDate = (dateString) => {
+  return dateString.split('-').join('/');
+};
 
-export const createTrip = () => {
-  trip.id = Date.now
-  trip.userID = currentTraveler.id
-  trip.destinationID = 
+export const createTrip = (trip) => {
+    trip = {
+      id: Date.now(),
+      userID: 3 || currentTraveler.id,
+      destinationID:  parseInt(destinationList.value),
+      travelers: parseInt(numberTravelers.value),
+      date: formatDate(startDate.value),
+      duration: calculateDuration(startDate.value, endDate.value),
+      status: "pending",
+      suggestedActivities: []
+    };
+    return trip
+  }
 
-  return trip
+export const calculateDuration = (startDate, endDate) => {
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+  const dayCount = (end - start) / (1000 * 60 * 60 * 24); // Convert milliseconds to days
+  return dayCount;
 }
-*/
 
 // export const findCostOneTrip(trip) {
 //     const destination = destinations.find(place => place.id === trip.destinationID);
