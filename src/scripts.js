@@ -63,9 +63,9 @@ submitButton.addEventListener('click', function(event) {
 
 const postTrip = (event) => {
   event.preventDefault();
-  console.log(startDate.value)
-  if (!startDate.value.length && !endDate.value.length) {
-    setErrorMessage("Please complete both fields")
+  // console.log(startDate.value)
+  if (!startDate.value || !endDate.value) {
+    setErrorMessage("Please complete all fields")
   } else if (!numberTravelers.value.length) {
     setErrorMessage("Please enter number of Travelers")
   } else if (!destinationList.value.length) {
