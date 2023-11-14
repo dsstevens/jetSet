@@ -24,13 +24,32 @@ export const getAllFetches = (userId) => {
   ])
 }
 
-export const postnewTrip = (tripAPI, data) => {
-  return fetch(`http://localhost:3001/api/v1/${tripAPI}`, {
+export const postnewTrip = (data) => {
+  return fetch('http://localhost:3001/api/v1/trips', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(data),
   })
-  .then(response => response.json())
+  .then(response => {
+    if(response.ok) {
+      return response.json();
+    } else {
+       // FORM HAS MISSING INFO
+       if (response.status === 422) {
+        throw new Error('The form is missing 1 or more pieces of information.');
+      // NETWORK ERROR
+    } else if (response.status >= 500) {
+      throw new Error(
+      `There has been a network error: ${response.status} ${response.statusText}. Please refresh the page or try again later.`,
+      );
+    } else {
+      // ALL OTHER ERRORS
+      throw new Error(
+        `There has been an error: ${response.status} ${response.statusText}`,
+      );
+    }
+    }
+  })
   .catch(error => console.error('Error:', error));
 };
 
