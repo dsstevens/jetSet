@@ -10,7 +10,7 @@ import { filterTripsUser, filterYearlyTrips, createTrip} from "./utils"
 
 //QUERY SELECTORS:
 const welcomeMessage = document.querySelector('.welcome-message');
-const accountButton = document.querySelector('#accountButton');
+const logoutButton = document.querySelector('#logoutButton');
 export const startDate = document.querySelector('#startDate');
 export const endDate = document.querySelector('#endDate');
 export const numberTravelers = document.querySelector('#numberTravelers');
