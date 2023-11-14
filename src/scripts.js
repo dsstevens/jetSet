@@ -4,17 +4,17 @@
 import './css/styles.css';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
-import { getAllFetches } from "./apiCalls"
-import { renderTrips, dropdownDestinations, displayMoneySpent } from "./DOMupdates"
-import { filterTripsUser, filterYearlyTrips} from "./utils"
+import { getAllFetches, postnewTrip } from "./apiCalls"
+import { renderTrips, dropdownDestinations, displayMoneySpent, setErrorMessage } from "./DOMupdates"
+import { filterTripsUser, filterYearlyTrips, createTrip} from "./utils"
 
 //QUERY SELECTORS:
 const welcomeMessage = document.querySelector('.welcome-message');
 const accountButton = document.querySelector('#accountButton');
-const startDate = document.querySelector('#startDate');
-const endDate = document.querySelector('#endDate');
-const numberTravelers = document.querySelector('#numberTravelers');
-const destinationList = document.querySelector('#destinationList');
+export const startDate = document.querySelector('#startDate');
+export const endDate = document.querySelector('#endDate');
+export const numberTravelers = document.querySelector('#numberTravelers');
+export const destinationList = document.querySelector('#destinationList');
 const submitButton = document.querySelector('#submitButton');
 const tripInfo = document.querySelector('.trip-info');
 const detailDestination = document.querySelector('.detail-destination');
@@ -34,8 +34,7 @@ export let allDestinations
 export let userTrips
 
 let userId = 3
-// for login, invoke a function that finds the userId and pass that thru instead of the hardcoded
-//.trim or slice
+let trip = {}
 
 const renderDashboard = (userId) => {
   getAllFetches(userId)
@@ -44,37 +43,54 @@ const renderDashboard = (userId) => {
     allTravelers = allData[0].travelers
     allTrips = allData[1].trips
     allDestinations = allData[2].destinations
-
-   userTrips = filterTripsUser(userId, allTrips)
-   console.log(userTrips)
-   filterYearlyTrips(userTrips)
-   displayMoneySpent(userTrips, allDestinations)
-   renderTrips(userTrips, allDestinations)
-   dropdownDestinations(allDestinations)
+    
+    userTrips = filterTripsUser(userId, allTrips)
+    console.log(userTrips)
+    filterYearlyTrips(userTrips)
+    displayMoneySpent(userTrips, allDestinations)
+    renderTrips(userTrips, allDestinations)
+    dropdownDestinations(allDestinations)
     //update dom functions
   })
 }
 
 window.addEventListener("load", renderDashboard(userId));
 
+submitButton.addEventListener('click', function(event) {
+  console.log('Submit button clicked!')
+  postTrip(event)
+})
+
+const postTrip = (event) => {
+  event.preventDefault();
+  console.log(startDate.value)
+  if (!startDate.value.length && !endDate.value.length) {
+    setErrorMessage("Please complete both fields")
+  } else if (!numberTravelers.value.length) {
+    setErrorMessage("Please enter number of Travelers")
+  } else if (!destinationList.value.length) {
+    setErrorMessage("Please choose a destination")
+  } else {
+    let newTrip = createTrip(trip)
+    console.log(newTrip)
+    postnewTrip(newTrip)
+    getAllFetches(userId)
+  }
+} 
 
 
-
+// destinationList.addEventListener("change", )
 
 accountButton.addEventListener('click', function() {
   
   console.log('Account button clicked!');
 });
 
-estimateTripButton.addEventListener('click', function() {
-  
+estimateTripButton.addEventListener('click', function(event) {
+  event.preventDefault();
   console.log('Estimate button clicked!');
 });
 
-submitButton.addEventListener('click', function() {
-  
-  console.log('Submit button clicked!');
-});
 
 pendingTripBtn.addEventListener('click', function() {
   //invoke a function which filters for pending status
