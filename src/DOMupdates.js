@@ -46,3 +46,8 @@ export const displayMoneySpent = (userTrips, allDestinations) => {
   return totalSpent.innerText += `$${cost}`
   
 }
+
+export const setErrorMessage = (errorMessage) => {
+  const formErrorElement = document.querySelector("#formError");
+  formErrorElement.textContent = errorMessage;
+};
