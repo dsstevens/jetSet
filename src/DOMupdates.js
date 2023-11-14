@@ -21,7 +21,7 @@ export const renderTrips = (trips, destinations) => {
       <dt>Number of Days</dt>
       <dd>${element.duration}</dd>
     </dl>
-    <img src=${matchingDestination.image} alt=${matchingDestination.alt}/>
+    <img src=${matchingDestination.image} alt=${matchingDestination.alt} width=100%/>
   </li>
   `
  })
