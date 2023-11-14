@@ -91,6 +91,12 @@ input {
   font-weight: 300;
   padding: 10px
 }
+
+.submitContainer {
+  display: flex;
+  justify-content: space-evenly
+}
+
 /* #submitButton {
 
 } */

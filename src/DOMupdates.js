@@ -1,6 +1,7 @@
-// import { tripList } from "./scripts"
+import {filterYearlyTrips, calculateYearlyCost} from "./utils";
 
 const tripList = document.querySelector('.trip-list');
+const totalSpent = document.querySelector('.total-spent')
 
 export const renderTrips = (trips, destinations) => {
   //hardcoded user without past/pending status for trip view
@@ -26,4 +27,22 @@ export const renderTrips = (trips, destinations) => {
  })
 }
 
-//past/pending toggle fn for the buttons to display the trips section
+//past/pending toggle fn for the buttons to display the trips section: refactor
+
+export const dropdownDestinations = allDestinations => {
+  allDestinations.forEach(element => {
+    var option = document.createElement("option");
+    option.text = element.destination;
+    option.value = "myvalue";
+    var select = document.getElementById("destinationList");
+    select.appendChild(option);
+  });
+};
+
+export const displayMoneySpent = (userTrips, allDestinations) => {
+  const annualTrips = filterYearlyTrips(userTrips)
+  const cost = calculateYearlyCost(annualTrips, allDestinations)
+  console.log(cost)
+  return totalSpent.innerText += `$${cost}`
+  
+}
