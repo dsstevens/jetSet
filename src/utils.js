@@ -1,21 +1,26 @@
 import { startDate, endDate } from "./scripts"
 
+let currentTraveler 
+
+//TRIP FNS
+
 export const filterTripsUser = (userId, trips) => {
   return trips.filter(trip => trip.userID === userId) 
 }
 
-let currentTraveler 
+export const determineDestination = (tripDetail, destinations) => {
+  return destinations.find(element => {
+     return element.id === tripDetail.destinationID
+ });
+ }
 
-export const calculateDays = (startDate, endDate) => {
-  const start = new Date(startDate);
-  const end = new Date(endDate);
-  const duration = (end - start) / (1000 * 60 * 60 * 24); // Convert milliseconds to days
-  return duration;
+ export const filterYearlyTrips = (userTrips) => {
+  const currentYear = new Date("11/11/2022").getFullYear()
+  // console.log(currentYear)
+    const yearlyTrips = userTrips.filter(trip => new Date(trip.date).getFullYear() === currentYear)
+    // console.log(yearlyTrips)
+    return yearlyTrips
 }
-
-const formatDate = (dateString) => {
-  return dateString.split('-').join('/');
-};
 
 export const createTrip = (trip) => {
     trip = {
@@ -31,6 +36,20 @@ export const createTrip = (trip) => {
     return trip
   }
 
+
+//TIME FUNCTIONS
+
+export const calculateDays = (startDate, endDate) => {
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+  const duration = (end - start) / (1000 * 60 * 60 * 24); // Convert milliseconds to days
+  return duration;
+}
+
+const formatDate = (dateString) => {
+  return dateString.split('-').join('/');
+};
+
 export const calculateDuration = (startDate, endDate) => {
   const start = new Date(startDate);
   const end = new Date(endDate);
@@ -38,26 +57,15 @@ export const calculateDuration = (startDate, endDate) => {
   return dayCount;
 }
 
-// export const findCostOneTrip(trip) {
-//     const destination = destinations.find(place => place.id === trip.destinationID);
-//     const travelers = trip.travelers;
-//     const estimatedFlightCostPerPerson = destination.estimatedFlightCostPerPerson;
-//     const estimatedLodgingCostPerDay = destination.estimatedLodgingCostPerDay;
-//     const duration = trip.duration;
-    
-//     const costOfTrip = ((travelers * estimatedFlightCostPerPerson) + (travelers * estimatedLodgingCostPerDay * duration)) * 1.1;
-    
-//     return costOfTrip;
-// }
+//COST FNS
 
-
-export const filterYearlyTrips = (userTrips) => {
-  const currentYear = new Date("11/11/2022").getFullYear()
-  console.log(currentYear)
-    const yearlyTrips = userTrips.filter(trip => new Date(trip.date).getFullYear() === currentYear)
-    console.log(yearlyTrips)
-    return yearlyTrips
-}
+export const estimateTripCost = (tripInfo, allDestinations)  => {
+  let total;
+  const destCost = determineDestination(tripInfo, allDestinations)
+  total = ((tripInfo.travelers * destCost.estimatedFlightCostPerPerson) + (destCost.estimatedLodgingCostPerDay * tripInfo.duration));
+  console.log(total);
+  return total += (total * .1);
+};
 
 export const calculateYearlyCost = (yearlyTrips, allDestinations) => {
   const totalCost = yearlyTrips.reduce((total, trip) => {
@@ -68,7 +76,7 @@ export const calculateYearlyCost = (yearlyTrips, allDestinations) => {
     return total;
   }, 0);
   const finalCost = totalCost + (totalCost * 0.1);
-  console.log(finalCost);
+  // console.log(finalCost);
   return finalCost;
 };
    

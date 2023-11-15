@@ -23,11 +23,12 @@ body {
     #81B2D9 0%,
     #EFF5FA 100%
   );
-  background-repeat: no-repeat;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
   height: 100vh;
-  /* overflow-y: hidden; */
+  background-attachment: fixed;
 }
 
 .hidden {
@@ -83,13 +84,19 @@ form {
     align-items: flex-start;
     height: 40%;
     width: 100%;
+    align-items: center;
+}
+
+select {
+  font-size: larger
 }
 
 label,
 input {
   font-family: 'Raleway', sans-serif;
-  font-weight: 300;
-  padding: 10px
+  font-weight: 400;
+  padding: 10px;
+  font-size: large
 }
 
 .submitContainer {
@@ -97,6 +104,9 @@ input {
   justify-content: space-evenly
 }
 
+.detail-image {
+  width: 100%
+}
 /* #submitButton {
 
 } */
@@ -110,7 +120,8 @@ input {
 }
 
 p {
-  margin: 3px
+  margin: 3px;
+  font-size:larger
 }
 
 .trip-container {
@@ -131,12 +142,35 @@ aside {
 }
 
 h3 {
-  margin: 3px
+  margin: 3px;
+  font-size: x-large
+}
+
+h4 {
+  font-size: larger
 }
 
 .trip-scroll {
-  height: 100%;
+  height: 100vh;
   overflow-y: scroll;
+}
+
+li {
+  font-size:larger;
+  list-style-type: none
+}
+
+dl {
+  display: grid;
+  grid-template-columns: max-content auto;
+}
+
+dt {
+  grid-column-start: 1;
+}
+
+dd {
+  grid-column-start: 2;
 }
 
 /*
