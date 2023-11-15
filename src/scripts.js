@@ -12,58 +12,53 @@ export const numberTravelers = document.querySelector('#numberTravelers');
 export const destinationList = document.querySelector('#destinationList');
 const submitButton = document.querySelector('#submitButton');
 const formError = document.querySelector('#formError')
-// const tripInfo = document.querySelector('.trip-info');
 export const detailDestination = document.querySelector('.detail-destination');
 export const detailTotalCost = document.querySelector('.detail-total-cost');
 export const detailImage = document.querySelector('.detail-image');
 const pendingTripBtn = document.querySelector('#pendingTripBtn');
 const pastTripBtn = document.querySelector('#pastTripBtn');
-// const totalSpent = document.querySelector('.total-spent');
-// const tripList = document.querySelector('.trip-list')
-// const mainLogin = document.querySelector('.main-login')
-// const dashboardView = document.querySelector('.dashboard-view')
+const mainLogin = document.querySelector('.main-login')
+const dashboardView = document.querySelector('.dashboard-view')
 const usernameInput = document.querySelector('#username');
 const passwordInput = document.querySelector('#password')
 const signIn = document.querySelector('#signIn')
 const errorMsgDisplay = document.querySelector('#errorMsgDisplay')
 
 //GLOBAL VARIABLES
-export let currentTraveler
 export let allTravelers
 export let allTrips
 export let allDestinations
 export let userTrips
-//do i need to export these?
-//not using currentTraveler yet::: login
 
-let userId = 3
+let userId = null
 let trip = {}
 
 //LOGIN FNS
 
-/*
-//Login hot tips
-//create a fn gets the userID
-// div has a hidden attribute
-//user name and pass and error handling for valid username w .includes(traveler and num 1-50)
-//.trim error handling
+export const loginUser = (event) => {
+  event.preventDefault()
+  const userIdMatch = usernameInput.value.match(/^traveler(\d+)$/)
+  console.log(userIdMatch)
+  if (!userIdMatch) {
+    setErrorMessage("Invalid username format.", errorMsgDisplay)
+    return
+  }
+  if (passwordInput.value !== "travel") {
+    setErrorMessage("Invalid Password", errorMsgDisplay)
+    return;
+  }
+  const loggedInUserID = parseInt(userIdMatch[1])
+    userId = loggedInUserID
 
-//login button will change the login view as hidden, 
-    reassign userId within the eventlistener 
-        then invoke renderDashboard
+  if (loggedInUserID < 1 || loggedInUserID > 50) {
+    setErrorMessage("Invalid username. Use 'traveler' and a number between 1 and 50.'", errorMsgDisplay)
+    return
+  }
+  mainLogin.hidden = true
+  dashboardView.hidden = false
 
-regExpression also an option 
-
-userNum = slice from the login input and pass it thru `traveler50`
-const findUser = (userNum) => {
- let user = travelers.find( person => person.id === num)
-  return user
-}
-
-interpolate each filter for the user's trips based on the userID property within trip
-
-
-*/
+  renderDashboard(userId)
+};
 
 //DASHBOARD FNS
 
@@ -81,7 +76,6 @@ const renderDashboard = (userId) => {
     displayMoneySpent(userTrips, allDestinations)
     renderTrips(userTrips, allDestinations)
     dropdownDestinations(allDestinations)
-    //update dom functions
   })
 }
 
@@ -105,17 +99,10 @@ const postTrip = (event) => {
 
 signIn.addEventListener('click', function(event) {
   event.preventDefault();
-  if (!usernameInput.value.length) {
-    setErrorMessage("Please enter a valid username", errorMsgDisplay)
-  } else if (!passwordInput.value.length) {
-    setErrorMessage("Please enter your password", errorMsgDisplay)
-  } else {
-  // userId = currentTraveler.id
-  // signIn.classList.remove("disabled")
-  // mainLogin.classList.add("hidden");
-  // dashboardView.classList.remove("hidden"); class="hidden" <-- add to line 35 html
-  //welcomeMessage.innerText += `${currentTraveler.name}
-  }
+    loginUser(event)
+  
+  //welcomeMessage.innerText += `${user.name}
+  
   console.log('Sign in button clicked!');
 });
 
@@ -124,16 +111,6 @@ logoutButton.addEventListener('click', function() {
   // dashboardView.classList.add("hidden"); class="hidden" <-- add to line 35 html
   console.log('Account button clicked!');
 });
-
-
-window.addEventListener("load", renderDashboard(userId));
-//will change renderDashboard to on login click, won't have a window listener
-
-submitButton.addEventListener('click', function(event) {
-  console.log('Submit button clicked!')
-  postTrip(event)
-  resetSelections(event)
-})
 
 estimateTripButton.addEventListener('click', function(event) {
   event.preventDefault();
@@ -152,6 +129,13 @@ estimateTripButton.addEventListener('click', function(event) {
     console.log('Estimate button clicked!');
   }
 });
+
+submitButton.addEventListener('click', function(event) {
+  console.log('Submit button clicked!')
+  postTrip(event)
+  resetSelections(event)
+})
+
 
 
 //refactor:: toggle function 
