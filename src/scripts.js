@@ -1,6 +1,6 @@
 import './css/styles.css';
 import { getAllFetches, postnewTrip } from "./apiCalls"
-import { renderTrips, dropdownDestinations, displayMoneySpent, setErrorMessage, displayEstimatedDestination } from "./DOMupdates"
+import { renderTrips, dropdownDestinations, displayMoneySpent, setErrorMessage, displayEstimatedDestination, displayEstimatedCost } from "./DOMupdates"
 import { filterTripsUser, filterYearlyTrips, createTrip, estimateTripCost} from "./utils"
 
 //QUERY SELECTORS:
@@ -107,6 +107,7 @@ estimateTripButton.addEventListener('click', function(event) {
   estimateTripCost(tripPreview, allDestinations)
   console.log(tripPreview)
   displayEstimatedDestination(tripPreview, allDestinations) 
+  displayEstimatedCost(tripPreview, allDestinations)
   console.log('Estimate button clicked!');
 });
 
