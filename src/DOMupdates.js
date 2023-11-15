@@ -4,6 +4,7 @@ import { startDate, endDate, numberTravelers, detailTotalCost, detailDestination
 
 const tripList = document.querySelector('.trip-list');
 const totalSpent = document.querySelector('.total-spent')
+const errorMsgDisplay = document.querySelector('#errorMsgDisplay')
 
 export const renderTrips = (trips, destinations) => {
   //refactor:: user without past/pending status for trip view
@@ -47,9 +48,10 @@ export const displayMoneySpent = (userTrips, allDestinations) => {
   return totalSpent.innerText += `$${cost}`
 }
 
-export const setErrorMessage = (errorMessage) => {
-  const formErrorElement = document.querySelector("#formError");
-  formErrorElement.textContent = errorMessage;
+export const setErrorMessage = (errorMessage, target) => {
+  if (target) {
+    target.innerText = errorMessage;
+  }
 };
 
 export const displayEstimatedCost= (tripInfo, allDestinations) => {
