@@ -1,6 +1,6 @@
 import './css/styles.css';
 import { getAllFetches, postnewTrip } from "./apiCalls"
-import { renderTrips, dropdownDestinations, displayMoneySpent, setErrorMessage, displayEstimatedDestination, displayEstimatedCost } from "./DOMupdates"
+import { renderTrips, dropdownDestinations, displayMoneySpent, setErrorMessage, displayEstimatedDestination, displayEstimatedCost, resetSelections } from "./DOMupdates"
 import { filterTripsUser, filterYearlyTrips, createTrip, estimateTripCost} from "./utils"
 
 //QUERY SELECTORS:
@@ -97,6 +97,7 @@ window.addEventListener("load", renderDashboard(userId));
 submitButton.addEventListener('click', function(event) {
   console.log('Submit button clicked!')
   postTrip(event)
+  resetSelections(event)
 })
 
 

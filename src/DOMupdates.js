@@ -1,5 +1,5 @@
 import {filterYearlyTrips, calculateYearlyCost, determineDestination, estimateTripCost} from "./utils";
-import { detailTotalCost, detailDestination, detailImage } from "./scripts"
+import { startDate, endDate, numberTravelers, detailTotalCost, detailDestination, detailImage } from "./scripts"
 
 
 const tripList = document.querySelector('.trip-list');
@@ -67,3 +67,15 @@ export const displayEstimatedDestination = (tripInfo, allDestinations) => {
   detailImage.src = image;
   detailImage.alt = alt || `Image of ${destination}`
 };
+
+export const resetSelections = (event) => {
+  console.log('this is the start of the reset')
+  startDate.value = ''
+  endDate.value = '' 
+  numberTravelers.value = ''
+  detailDestination.innerText = ''
+  detailTotalCost.innerText = ''
+  detailImage.src = ''
+  detailImage.alt = ''
+  console.log('this is the end of the reset')
+}
