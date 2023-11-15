@@ -19,6 +19,12 @@ const pendingTripBtn = document.querySelector('#pendingTripBtn');
 const pastTripBtn = document.querySelector('#pastTripBtn');
 const totalSpent = document.querySelector('.total-spent');
 // const tripList = document.querySelector('.trip-list')
+// const mainLogin = document.querySelector('.main-login')
+// const dashboardView = document.querySelector('.dashboard-view')
+// const usernameInput = document.querySelector('#username');
+// const passwordInput = document.querySelector('#password')
+// const signIn = document.querySelector('#signIn')
+// const errorMessage = document.querySelector('#errorMessage')
 
 //GLOBAL VARIABLES
 export let currentTraveler
@@ -49,6 +55,11 @@ const findUser = (userNum) => {
 }
 
 interpolate each filter for the user's trips based on the userID property within trip
+
+dashboardView
+welcomeMessage
+mainLogin class = hidden
+
 */
 
 //DASHBOARD FNS
@@ -91,6 +102,11 @@ const postTrip = (event) => {
 
 //EVENT LISTENERS
 
+signIn.addEventListener('click', function() {
+  
+  console.log('Sign in button clicked!');
+});
+
 window.addEventListener("load", renderDashboard(userId));
 //will change renderDashboard to on login click, won't have a window listener
 
@@ -99,7 +115,6 @@ submitButton.addEventListener('click', function(event) {
   postTrip(event)
   resetSelections(event)
 })
-
 
 estimateTripButton.addEventListener('click', function(event) {
   event.preventDefault();
@@ -119,21 +134,18 @@ estimateTripButton.addEventListener('click', function(event) {
   }
 });
 
-// destinationList.addEventListener("change", )
-
 logoutButton.addEventListener('click', function() {
   
   console.log('Account button clicked!');
 });
 
 
-
+//refactor:: toggle function 
 pendingTripBtn.addEventListener('click', function() {
   //invoke a function which filters for pending status
   //invoke a fn which toggles the section to display 
   console.log('Pending Trip button clicked!');
 });
-//toggle function which 
 pastTripBtn.addEventListener('click', function() {
   //invoke a function which filters for past trips
   //invoke a fn which toggles the section to display
