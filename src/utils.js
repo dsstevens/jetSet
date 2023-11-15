@@ -6,6 +6,8 @@ export const filterTripsUser = (userId, trips) => {
 
 let currentTraveler 
 
+
+
 export const calculateDays = (startDate, endDate) => {
   const start = new Date(startDate);
   const end = new Date(endDate);
@@ -38,24 +40,23 @@ export const calculateDuration = (startDate, endDate) => {
   return dayCount;
 }
 
-// export const findCostOneTrip(trip) {
-//     const destination = destinations.find(place => place.id === trip.destinationID);
-//     const travelers = trip.travelers;
-//     const estimatedFlightCostPerPerson = destination.estimatedFlightCostPerPerson;
-//     const estimatedLodgingCostPerDay = destination.estimatedLodgingCostPerDay;
-//     const duration = trip.duration;
-    
-//     const costOfTrip = ((travelers * estimatedFlightCostPerPerson) + (travelers * estimatedLodgingCostPerDay * duration)) * 1.1;
-    
-//     return costOfTrip;
-// }
+
+
+export const estimateTripCost = (tripInfo, allDestinations)  => {
+  let total;
+  const destCost = determineDestination(tripInfo, allDestinations)
+  total = ((tripInfo.travelers * destCost.estimatedFlightCostPerPerson) + (destCost.estimatedLodgingCostPerDay * tripInfo.duration));
+  console.log(total);
+  return total += (total * .1);
+};
+
 
 
 export const filterYearlyTrips = (userTrips) => {
   const currentYear = new Date("11/11/2022").getFullYear()
-  console.log(currentYear)
+  // console.log(currentYear)
     const yearlyTrips = userTrips.filter(trip => new Date(trip.date).getFullYear() === currentYear)
-    console.log(yearlyTrips)
+    // console.log(yearlyTrips)
     return yearlyTrips
 }
 
@@ -68,7 +69,7 @@ export const calculateYearlyCost = (yearlyTrips, allDestinations) => {
     return total;
   }, 0);
   const finalCost = totalCost + (totalCost * 0.1);
-  console.log(finalCost);
+  // console.log(finalCost);
   return finalCost;
 };
    
