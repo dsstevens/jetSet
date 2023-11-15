@@ -1,70 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;1,200&display=swap" rel="stylesheet">
-  <title>jetSet</title>
-</head>
-<!-- Login -->
-  <body>
-    <header>
-      <div class="header-banner" role="banner" aria-label="Main banner">
-        <!-- <img src="./images/turing-logo.png" alt="turing logo"> -->
-        <h1>jetSet</h1>
-        <h2 class="welcome-message">Welcome</h2>
-        <button class="button" id="logoutButton">Logout</button>
-      </div>
-    </header>
-    <div class="trip-container">
-    <main>
-      <article>
-        <form aria-labelledby="form-heading">
-            <h3>Plan Your Trip</h3>
-            <label for="startDate">Start Date:</label>
-            <input type="date" id="startDate" name="start-date" required>
-            <label for="endDate">End Date:</label>
-            <input type="date" id="endDate" name="end-date" required>
-            <label for="numberTravelers">Number of Travelers:</label>
-            <input type="number" id="numberTravelers" name="number-travelers" min="1" required>
-            <label for="destinationList" class="destination-list">Destination:</label>
-            <select id="destinationList" name="destination">
-                <!-- Options will be populated here from destinations via innerHTML-->
-            </select>
-            <button class="button" id="estimateTripButton"type="submit">jetSet, go!</button>
-            <p id="formError"></p>
-        </form>
-      </article>
-      <article>
-        <div class="submitContainer">
-        <h3>Trip Details</h3>
-        <button class="button" id="submitButton"type="submit">Submit Request</button>
-        </div>
-        <div class="trip-info">
-          <p>Destination: <span class="detail-destination"></span></p>
-          <p>Estimated Cost: <span class="detail-total-cost"></span></p>
-          <!-- Destination image here -->
-        </div>
-      </article>
-    </main>
-    <aside>
-      <div class="button-container">
-        <button class="button" id="pendingTripBtn">Pending Trips</button>
-        <button class="button" id="pastTripBtn">Past Trips</button>
-        <!-- <button id="future-trips">Future Trips</button> -->
-      </div>
-      <h4>Total Money Spent This Year: <span class="total-spent"></span></h4>
-        <section class="trip-scroll">
-          <ul class="trip-list">
-          <!-- List items will be populated here -->
-          </ul>
-        </section>
-    </aside>
-    </div>
-    <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
-    <script src="bundle.js"></script>
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;1,200&display=swap"
+			rel="stylesheet"
+		/>
+		<title>jetSet</title>
+	</head>
+	<body>
+    <!-- Login -->
+		<div>
+			<header>
+				<div class="header-banner" role="banner" aria-label="Main banner">
+					<!-- <img src="./images/turing-logo.png" alt="turing logo"> -->
+					<h1>jetSet</h1>
+					<h2 class="welcome-message">Welcome</h2>
+					<button class="button" id="logoutButton">Logout</button>
+				</div>
+			</header>
+			<div class="trip-container">
+				<main>
+					<article>
+						<form aria-labelledby="form-heading">
+							<h3>Plan Your Trip</h3>
+							<label for="startDate">Start Date:</label>
+							<input type="date" id="startDate" name="start-date" required />
+							<label for="endDate">End Date:</label>
+							<input type="date" id="endDate" name="end-date" required />
+							<label for="numberTravelers">Number of Travelers:</label>
+							<input
+								type="number"
+								id="numberTravelers"
+								name="number-travelers"
+								min="1"
+								required
+							/>
+							<label for="destinationList" class="destination-list"
+								>Destination:</label
+							>
+							<select id="destinationList" name="destination">
+								<!-- Options will be populated here from destinations via innerHTML-->
+							</select>
+							<button class="button" id="estimateTripButton" type="submit">
+								jetSet, go!
+							</button>
+							<p id="formError"></p>
+						</form>
+					</article>
+					<article>
+						<div class="submitContainer">
+							<h3>Trip Details</h3>
+							<button class="button" id="submitButton" type="submit">
+								Submit Request
+							</button>
+						</div>
+						<div class="trip-info">
+							<p>Destination: <span class="detail-destination"></span></p>
+							<p>Estimated Cost: <span class="detail-total-cost"></span></p>
+							<img class="detail-image"/>
+						</div>
+					</article>
+				</main>
+				<aside>
+					<div class="button-container">
+						<button class="button" id="pendingTripBtn">Pending Trips</button>
+						<button class="button" id="pastTripBtn">Past Trips</button>
+						<!-- <button id="future-trips">Future Trips</button> -->
+					</div>
+					<h4>
+						Total Money Spent This Year: <span class="total-spent"></span>
+					</h4>
+					<section class="trip-scroll">
+						<ul class="trip-list">
+							<!-- List items will be populated here -->
+						</ul>
+					</section>
+				</aside>
+			</div>
+			<!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
+			<script src="bundle.js"></script>
+		</div>
+	</body>
 </html>
