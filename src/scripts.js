@@ -12,8 +12,8 @@ export const numberTravelers = document.querySelector('#numberTravelers');
 export const destinationList = document.querySelector('#destinationList');
 const submitButton = document.querySelector('#submitButton');
 // const tripInfo = document.querySelector('.trip-info');
-const detailDestination = document.querySelector('.detail-destination');
-const detailTotalCost = document.querySelector('.detail-total-cost');
+export const detailDestination = document.querySelector('.detail-destination');
+export const detailTotalCost = document.querySelector('.detail-total-cost');
 const pendingTripBtn = document.querySelector('#pendingTripBtn');
 const pastTripBtn = document.querySelector('#pastTripBtn');
 const totalSpent = document.querySelector('.total-spent');
@@ -102,10 +102,10 @@ submitButton.addEventListener('click', function(event) {
 estimateTripButton.addEventListener('click', function(event) {
   event.preventDefault();
   //error handling, disallow it from being clicked until all inputs are filled, disabled attribute
-  let estimate = createTrip(trip)
-  estimateTripCost(estimate, allDestinations)
-  console.log(estimate)
-  displayEstimatedDestination() 
+  let tripPreview = createTrip(trip)
+  estimateTripCost(tripPreview, allDestinations)
+  console.log(tripPreview)
+  displayEstimatedDestination(tripPreview, allDestinations) 
   console.log('Estimate button clicked!');
 });
 
