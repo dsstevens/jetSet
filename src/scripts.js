@@ -103,13 +103,20 @@ submitButton.addEventListener('click', function(event) {
 
 estimateTripButton.addEventListener('click', function(event) {
   event.preventDefault();
-  //error handling, disallow it from being clicked until all inputs are filled, disabled attribute
-  let tripPreview = createTrip(trip)
-  estimateTripCost(tripPreview, allDestinations)
-  console.log(tripPreview)
-  displayEstimatedDestination(tripPreview, allDestinations) 
-  displayEstimatedCost(tripPreview, allDestinations)
-  console.log('Estimate button clicked!');
+  if (!startDate.value || !endDate.value) {
+    setErrorMessage("Please complete all fields")
+  } else if (!numberTravelers.value.length) {
+    setErrorMessage("Please enter number of Travelers")
+  } else if (!destinationList.value.length) {
+    setErrorMessage("Please choose a destination")
+  } else {
+    let tripPreview = createTrip(trip)
+    estimateTripCost(tripPreview, allDestinations)
+    console.log(tripPreview)
+    displayEstimatedDestination(tripPreview, allDestinations) 
+    displayEstimatedCost(tripPreview, allDestinations)
+    console.log('Estimate button clicked!');
+  }
 });
 
 // destinationList.addEventListener("change", )
