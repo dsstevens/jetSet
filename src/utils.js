@@ -40,7 +40,11 @@ export const calculateDuration = (startDate, endDate) => {
   return dayCount;
 }
 
-
+export const determineDestination = (tripDetail, destinations) => {
+  return destinations.find(element => {
+     return element.id === tripDetail.destinationID
+ });
+ }
 
 export const estimateTripCost = (tripInfo, allDestinations)  => {
   let total;
