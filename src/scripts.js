@@ -14,6 +14,7 @@ const submitButton = document.querySelector('#submitButton');
 // const tripInfo = document.querySelector('.trip-info');
 export const detailDestination = document.querySelector('.detail-destination');
 export const detailTotalCost = document.querySelector('.detail-total-cost');
+export const detailImage = document.querySelector('.detail-image');
 const pendingTripBtn = document.querySelector('#pendingTripBtn');
 const pastTripBtn = document.querySelector('#pastTripBtn');
 const totalSpent = document.querySelector('.total-spent');

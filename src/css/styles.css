@@ -103,6 +103,9 @@ input {
   justify-content: space-evenly
 }
 
+.detail-image {
+  width: 100%
+}
 /* #submitButton {
 
 } */

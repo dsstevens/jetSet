@@ -1,4 +1,6 @@
-import {filterYearlyTrips, calculateYearlyCost} from "./utils";
+import {filterYearlyTrips, calculateYearlyCost, determineDestination} from "./utils";
+import { detailTotalCost, detailDestination, detailImage } from "./scripts"
+
 
 const tripList = document.querySelector('.trip-list');
 const totalSpent = document.querySelector('.total-spent')
@@ -44,10 +46,33 @@ export const displayMoneySpent = (userTrips, allDestinations) => {
   const cost = calculateYearlyCost(annualTrips, allDestinations)
   console.log(cost)
   return totalSpent.innerText += `$${cost}`
-  
 }
 
 export const setErrorMessage = (errorMessage) => {
   const formErrorElement = document.querySelector("#formError");
   formErrorElement.textContent = errorMessage;
+};
+
+// export const displayEstimatedDestination= (tripInfo, allDestinations) => {
+// // on jet set click, render the associated image with the selected destination
+// // render price of the selection
+
+
+// // match the destination id to the destination array and find the price
+//   determineDestination(tripInfo, allDestinations) //resolves to the destination object
+  
+//   return detailTotalCost.innerText += `$${cost}`,  detailDestination.innerText += `${destinationName}`
+// }
+//from chat, needs work, error that detail destination is not defined
+export const displayEstimatedDestination = (tripInfo, allDestinations) => {
+  // Find the destination based on the destinationID
+  const selectedDestination = determineDestination(tripInfo, allDestinations);
+  console.log(selectedDestination, '<----destination choice')
+  // Access the relevant properties from the selected destination
+  const { destination, image, alt } = selectedDestination;
+
+  // Update the DOM elements
+  detailDestination.innerText = destination;
+  detailImage.src = image;
+  detailImage.alt = alt || `Image of ${destination}`;
 };
