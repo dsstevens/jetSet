@@ -35,6 +35,16 @@ body {
   display: none;
 }
 
+/* .main-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+/* .dashboard-view {
+
+} */
+
 .header-banner {
   display: flex;
     height: 20%;

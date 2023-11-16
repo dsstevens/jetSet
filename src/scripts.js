@@ -1,7 +1,8 @@
 import './css/styles.css';
 import { getAllFetches, postnewTrip } from "./apiCalls"
-import { renderTrips, dropdownDestinations, displayMoneySpent, setErrorMessage, displayEstimatedDestination, displayEstimatedCost, resetSelections } from "./DOMupdates"
+import { renderTrips, dropdownDestinations, displayMoneySpent, setErrorMessage, displayEstimatedDestination, displayEstimatedCost, resetSelections, totalSpent } from "./DOMupdates"
 import { filterTripsUser, filterYearlyTrips, createTrip, estimateTripCost} from "./utils"
+
 
 //QUERY SELECTORS:
 const welcomeMessage = document.querySelector('.welcome-message');
@@ -11,45 +12,55 @@ export const endDate = document.querySelector('#endDate');
 export const numberTravelers = document.querySelector('#numberTravelers');
 export const destinationList = document.querySelector('#destinationList');
 const submitButton = document.querySelector('#submitButton');
-// const tripInfo = document.querySelector('.trip-info');
+const formError = document.querySelector('#formError')
 export const detailDestination = document.querySelector('.detail-destination');
 export const detailTotalCost = document.querySelector('.detail-total-cost');
 export const detailImage = document.querySelector('.detail-image');
+
 const pendingTripBtn = document.querySelector('#pendingTripBtn');
 const pastTripBtn = document.querySelector('#pastTripBtn');
-const totalSpent = document.querySelector('.total-spent');
-// const tripList = document.querySelector('.trip-list')
+const mainLogin = document.querySelector('.main-login')
+const dashboardView = document.querySelector('.dashboard-view')
+const usernameInput = document.querySelector('#username');
+const passwordInput = document.querySelector('#password')
+const signIn = document.querySelector('#signIn')
+const errorMsgDisplay = document.querySelector('#errorMsgDisplay')
 
 //GLOBAL VARIABLES
-export let currentTraveler
 export let allTravelers
 export let allTrips
 export let allDestinations
 export let userTrips
-//do i need to export these?
-//not using currentTraveler yet::: login
 
-let userId = 3
+let userId = null
 let trip = {}
 
 //LOGIN FNS
 
-/*
-//Login hot tips
-//create a fn gets the userID
-// div has a hidden attribute
-//user name and pass and error handling for valid username w .includes(traveler and num 1-50)
-//.trim error handling
-//login button will change the login view as hidden, reassign userId within the eventlistener then invoke renderDashboard
+export const loginUser = (event) => {
+  event.preventDefault()
+  const userIdMatch = usernameInput.value.match(/^traveler(\d+)$/)
+  console.log(userIdMatch)
+  if (!userIdMatch) {
+    setErrorMessage("Invalid username format.", errorMsgDisplay)
+    return
+  }
+  if (passwordInput.value !== "travel") {
+    setErrorMessage("Invalid Password", errorMsgDisplay)
+    return;
+  }
+  const loggedInUserID = parseInt(userIdMatch[1])
+    userId = loggedInUserID
 
-userNum = slice from the login input and pass it thru `traveler50`
-const findUser = (userNum) => {
- let user = travelers.find( person => person.id === num)
-  return user
-}
+  if (loggedInUserID < 1 || loggedInUserID > 50) {
+    setErrorMessage("Invalid username. Use 'traveler' and a number between 1 and 50.'", errorMsgDisplay)
+    return
+  }
+  mainLogin.hidden = true
+  dashboardView.hidden = false
 
-interpolate each filter for the user's trips based on the userID property within trip
-*/
+  renderDashboard(userId)
+};
 
 //DASHBOARD FNS
 
@@ -67,32 +78,63 @@ const renderDashboard = (userId) => {
     displayMoneySpent(userTrips, allDestinations)
     renderTrips(userTrips, allDestinations)
     dropdownDestinations(allDestinations)
-    //update dom functions
   })
 }
 
 const postTrip = (event) => {
   event.preventDefault();
   if (!startDate.value || !endDate.value) {
-    setErrorMessage("Please complete all fields")
+    setErrorMessage("Please complete all fields",formError)
   } else if (!numberTravelers.value.length) {
-    setErrorMessage("Please enter number of Travelers")
+    setErrorMessage("Please enter number of Travelers", formError)
   } else if (!destinationList.value.length) {
-    setErrorMessage("Please choose a destination")
+    setErrorMessage("Please choose a destination", formError)
   } else {
     let newTrip = createTrip(trip)
     console.log(newTrip)
     postnewTrip(newTrip)
-    getAllFetches(userId)
-    //dom fn to clear inputs
+    // getAllFetches(userId)
   }
 } 
 
-
 //EVENT LISTENERS
 
-window.addEventListener("load", renderDashboard(userId));
-//will change renderDashboard to on login click, won't have a window listener
+signIn.addEventListener('click', function(event) {
+  event.preventDefault();
+    loginUser(event)
+  
+  //welcomeMessage.innerText += `${user.name}
+  
+  console.log('Sign in button clicked!');
+});
+
+logoutButton.addEventListener('click', function(event) {
+  dashboardView.hidden = true
+  mainLogin.hidden = false
+  userId = null
+  // renderDashboard(userId)
+  resetSelections(event)
+  // totalSpent.innerText = ''
+  console.log('logout button clicked!');
+});
+
+estimateTripButton.addEventListener('click', function(event) {
+  event.preventDefault();
+  if (!startDate.value || !endDate.value) {
+    setErrorMessage("Please complete all fields", formError)
+  } else if (!numberTravelers.value.length) {
+    setErrorMessage("Please enter number of Travelers", formError)
+  } else if (!destinationList.value.length) {
+    setErrorMessage("Please choose a destination", formError)
+  } else {
+    let tripPreview = createTrip(trip)
+    estimateTripCost(tripPreview, allDestinations)
+    console.log(tripPreview)
+    displayEstimatedDestination(tripPreview, allDestinations) 
+    displayEstimatedCost(tripPreview, allDestinations)
+    console.log('Estimate button clicked!');
+  }
+});
 
 submitButton.addEventListener('click', function(event) {
   console.log('Submit button clicked!')
@@ -101,32 +143,13 @@ submitButton.addEventListener('click', function(event) {
 })
 
 
-estimateTripButton.addEventListener('click', function(event) {
-  event.preventDefault();
-  //error handling, disallow it from being clicked until all inputs are filled, disabled attribute
-  let tripPreview = createTrip(trip)
-  estimateTripCost(tripPreview, allDestinations)
-  console.log(tripPreview)
-  displayEstimatedDestination(tripPreview, allDestinations) 
-  displayEstimatedCost(tripPreview, allDestinations)
-  console.log('Estimate button clicked!');
-});
 
-// destinationList.addEventListener("change", )
-
-logoutButton.addEventListener('click', function() {
-  
-  console.log('Account button clicked!');
-});
-
-
-
+//refactor:: toggle function 
 pendingTripBtn.addEventListener('click', function() {
   //invoke a function which filters for pending status
   //invoke a fn which toggles the section to display 
   console.log('Pending Trip button clicked!');
 });
-//toggle function which 
 pastTripBtn.addEventListener('click', function() {
   //invoke a function which filters for past trips
   //invoke a fn which toggles the section to display

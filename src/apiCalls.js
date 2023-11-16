@@ -1,3 +1,6 @@
+import { userTrips, allDestinations } from "./scripts"
+import { renderTrips } from "./DOMupdates";
+
 const getFetch = (data) => {
   return fetch(`http://localhost:3001/api/v1/${data}`)
     .then((response) => {
@@ -52,6 +55,11 @@ export const postnewTrip = (newTrip) => {
     }
     }
   })
+  .then((allData) => {
+    userTrips.push(allData)
+    console.log(allDestinations, "<---- after push destinations")
+    renderTrips(userTrips, allDestinations)
+})
   .catch(error => console.error('Error:', error));
 };
 

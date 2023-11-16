@@ -3,12 +3,16 @@ import { startDate, endDate, numberTravelers, detailTotalCost, detailDestination
 
 
 const tripList = document.querySelector('.trip-list');
-const totalSpent = document.querySelector('.total-spent')
+export const totalSpent = document.querySelector('.total-spent')
+const errorMsgDisplay = document.querySelector('#errorMsgDisplay')
 
 export const renderTrips = (trips, destinations) => {
   //refactor:: user without past/pending status for trip view
- trips.forEach(element => {
+  tripList.innerHTML = ''
+  trips.forEach(element => {
+  console.log(element, "<--- element in trips")
   const matchingDestination = destinations.find(destination => {
+    console.log(destinations, "<-- destinations in forEach")
     return destination.id === element.destinationID
   })
   tripList.innerHTML += `
@@ -44,12 +48,13 @@ export const dropdownDestinations = allDestinations => {
 export const displayMoneySpent = (userTrips, allDestinations) => {
   const annualTrips = filterYearlyTrips(userTrips)
   const cost = calculateYearlyCost(annualTrips, allDestinations)
-  return totalSpent.innerText += `$${cost}`
+  return totalSpent.innerText = `$${cost}`
 }
 
-export const setErrorMessage = (errorMessage) => {
-  const formErrorElement = document.querySelector("#formError");
-  formErrorElement.textContent = errorMessage;
+export const setErrorMessage = (errorMessage, target) => {
+  if (target) {
+    target.innerText = errorMessage;
+  }
 };
 
 export const displayEstimatedCost= (tripInfo, allDestinations) => {
