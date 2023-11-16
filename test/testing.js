@@ -76,3 +76,20 @@ describe('determineDestination', () => {
     expect(trip).to.have.property('suggestedActivities').that.is.an('array').that.is.empty;
   });
  });
+
+ describe('calculateDuration', () => {
+  it('should be a function', () => {
+    expect(typeof calculateDuration).to.equal('function');
+  });
+ 
+  it('should return the correct duration', () => {
+    const duration = calculateDuration('2022/09/16', '2022/09/24');
+    expect(duration).to.equal(8);
+  });
+ 
+  it('should return 0 if start date is after end date', () => {
+    const duration = calculateDuration('2022/09/24', '2022/09/16');
+    expect(duration).to.equal(0);
+  });
+ });
+ 
