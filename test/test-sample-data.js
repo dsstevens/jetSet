@@ -1,5 +1,7 @@
-export const travelers = 
-     [
+export const travelers = {
+
+   travelers : [
+     
       {
         "id": 1,
         "name": "Ham Leadbeater",
@@ -26,10 +28,13 @@ export const travelers =
         "travelerType": "thrill-seeker"
       }
     ]
-  
+}
 
 
-    export const trips = [
+export const trips = {
+    
+       trips : [
+       
     {
       "id": 1,
       "userID": 44,
@@ -81,10 +86,12 @@ export const travelers =
       "suggestedActivities": []
     }
   ]
+}
 
+export const destinations = {
 
-export const destinations = 
-  [
+  destinations : [
+  
     {
       "id": 45,
       "destination": "Calgary, Canada",
@@ -134,3 +141,4 @@ export const destinations =
       "alt": "person sitting on brown rock in front of small body of water"
     }
   ]
+}
