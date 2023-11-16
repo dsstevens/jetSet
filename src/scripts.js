@@ -1,7 +1,8 @@
 import './css/styles.css';
 import { getAllFetches, postnewTrip } from "./apiCalls"
-import { renderTrips, dropdownDestinations, displayMoneySpent, setErrorMessage, displayEstimatedDestination, displayEstimatedCost, resetSelections } from "./DOMupdates"
+import { renderTrips, dropdownDestinations, displayMoneySpent, setErrorMessage, displayEstimatedDestination, displayEstimatedCost, resetSelections, totalSpent } from "./DOMupdates"
 import { filterTripsUser, filterYearlyTrips, createTrip, estimateTripCost} from "./utils"
+
 
 //QUERY SELECTORS:
 const welcomeMessage = document.querySelector('.welcome-message');
@@ -15,6 +16,7 @@ const formError = document.querySelector('#formError')
 export const detailDestination = document.querySelector('.detail-destination');
 export const detailTotalCost = document.querySelector('.detail-total-cost');
 export const detailImage = document.querySelector('.detail-image');
+
 const pendingTripBtn = document.querySelector('#pendingTripBtn');
 const pastTripBtn = document.querySelector('#pastTripBtn');
 const mainLogin = document.querySelector('.main-login')
@@ -91,7 +93,7 @@ const postTrip = (event) => {
     let newTrip = createTrip(trip)
     console.log(newTrip)
     postnewTrip(newTrip)
-    getAllFetches(userId)
+    // getAllFetches(userId)
   }
 } 
 
@@ -106,10 +108,14 @@ signIn.addEventListener('click', function(event) {
   console.log('Sign in button clicked!');
 });
 
-logoutButton.addEventListener('click', function() {
-  // mainLogin.classList.remove("hidden");
-  // dashboardView.classList.add("hidden"); class="hidden" <-- add to line 35 html
-  console.log('Account button clicked!');
+logoutButton.addEventListener('click', function(event) {
+  dashboardView.hidden = true
+  mainLogin.hidden = false
+  userId = null
+  // renderDashboard(userId)
+  resetSelections(event)
+  // totalSpent.innerText = ''
+  console.log('logout button clicked!');
 });
 
 estimateTripButton.addEventListener('click', function(event) {
