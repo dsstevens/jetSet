@@ -3,15 +3,18 @@ const expect = chai.expect;
 
 import { 
   determineDestination, 
-  filterYearlyTrips, 
-  createTrip, 
+  filterYearlyTrips,  
   calculateDuration, 
   estimateTripCost, 
   calculateYearlyCost 
-} from '../src/utils';
+} from './src/utils';
+
+import {
+  createTrip
+} from './src/scripts'
 
 
-import {trips, destinations } from './test-sample-data';
+import { trips, destinations } from './test-sample-data';
 
 
 describe('See if the tests are running', function() {
@@ -54,28 +57,28 @@ describe('determineDestination', () => {
   });
  });
  
-//  describe('createTrip', () => {
-//   it('should be a function', () => {
-//     expect(typeof createTrip).to.equal('function');
-//   });
+ describe('createTrip', () => {
+  it('should be a function', () => {
+    expect(typeof createTrip).to.equal('function');
+  });
  
-//   it('should return a new trip with correct properties', () => {
-//     const trip = createTrip({
-//       destinationList: { value: 49 },
-//       numberTravelers: { value: 5 },
-//       startDate: { value: '2022/09/16' },
-//       endDate: { value: '2022/09/24' }
-//     });
-//     expect(trip).to.have.property('id');
-//     expect(trip).to.have.property('userID', 3);
-//     expect(trip).to.have.property('destinationID', 49);
-//     expect(trip).to.have.property('travelers', 5);
-//     expect(trip).to.have.property('date', '2022/09/16');
-//     expect(trip).to.have.property('duration', 8);
-//     expect(trip).to.have.property('status', 'pending');
-//     expect(trip).to.have.property('suggestedActivities').that.is.an('array').that.is.empty;
-//   });
-//  });
+  it('should return a new trip with correct properties', () => {
+    const trip = createTrip({
+      destinationList: { value: 49 },
+      numberTravelers: { value: 5 },
+      startDate: { value: '2022/09/16' },
+      endDate: { value: '2022/09/24' }
+    });
+    expect(trip).to.have.property('id');
+    expect(trip).to.have.property('userID', 3);
+    expect(trip).to.have.property('destinationID', 49);
+    expect(trip).to.have.property('travelers', 5);
+    expect(trip).to.have.property('date', '2022/09/16');
+    expect(trip).to.have.property('duration', 8);
+    expect(trip).to.have.property('status', 'pending');
+    expect(trip).to.have.property('suggestedActivities').that.is.an('array').that.is.empty;
+  });
+ });
 
  describe('calculateDuration', () => {
   it('should be a function', () => {
