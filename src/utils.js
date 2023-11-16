@@ -1,7 +1,3 @@
-import { startDate, endDate } from "./scripts"
-
-let currentTraveler 
-
 //TRIP FNS
 
 export const filterTripsUser = (userId, trips) => {
@@ -16,37 +12,14 @@ export const determineDestination = (tripDetail, destinations) => {
 
  export const filterYearlyTrips = (userTrips) => {
   const currentYear = new Date("11/11/2022").getFullYear()
-  // console.log(currentYear)
+
     const yearlyTrips = userTrips.filter(trip => new Date(trip.date).getFullYear() === currentYear)
     // console.log(yearlyTrips)
     return yearlyTrips
 }
 
-export const createTrip = (trip) => {
-    trip = {
-      id: Date.now(),
-      userID: 3 || currentTraveler.id,
-      destinationID:  parseInt(destinationList.value),
-      travelers: parseInt(numberTravelers.value),
-      date: formatDate(startDate.value),
-      duration: calculateDuration(startDate.value, endDate.value),
-      status: "pending",
-      suggestedActivities: []
-    };
-    return trip
-  }
-
-
 //TIME FUNCTIONS
-
-export const calculateDays = (startDate, endDate) => {
-  const start = new Date(startDate);
-  const end = new Date(endDate);
-  const duration = (end - start) / (1000 * 60 * 60 * 24); // Convert milliseconds to days
-  return duration;
-}
-
-const formatDate = (dateString) => {
+export const formatDate = (dateString) => {
   return dateString.split('-').join('/');
 };
 

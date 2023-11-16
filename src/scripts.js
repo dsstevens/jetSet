@@ -1,7 +1,7 @@
 import './css/styles.css';
 import { getAllFetches, postnewTrip } from "./apiCalls"
 import { renderTrips, dropdownDestinations, displayMoneySpent, setErrorMessage, displayEstimatedDestination, displayEstimatedCost, resetSelections, totalSpent } from "./DOMupdates"
-import { filterTripsUser, filterYearlyTrips, createTrip, estimateTripCost} from "./utils"
+import { filterTripsUser, filterYearlyTrips, estimateTripCost, formatDate, calculateDuration} from "./utils"
 
 
 //QUERY SELECTORS:
@@ -34,6 +34,21 @@ export let userTrips
 
 let userId = null
 let trip = {}
+
+const createTrip = (trip) => {
+  trip = {
+    id: Date.now(),
+    userID: userId,
+    destinationID:  parseInt(destinationList.value),
+    travelers: parseInt(numberTravelers.value),
+    date: formatDate(startDate.value),
+    duration: calculateDuration(startDate.value, endDate.value),
+    status: "pending",
+    suggestedActivities: []
+  };
+  return trip
+}
+
 
 //LOGIN FNS
 

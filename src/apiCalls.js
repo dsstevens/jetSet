@@ -33,30 +33,14 @@ export const postnewTrip = (newTrip) => {
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(newTrip),
   })
-  .then(response => {
-    if(response.ok) {
-      //add the new trip to user trips in api
-      //renderDashboard(userId)
-      return response.json();
-    } else {
-       // FORM HAS MISSING INFO
-       if (response.status === 422) {
-        throw new Error('The form is missing 1 or more pieces of information.');
-      // NETWORK ERROR
-    } else if (response.status >= 500) {
-      throw new Error(
-      `There has been a network error: ${response.status} ${response.statusText}. Please refresh the page or try again later.`,
-      );
-    } else {
-      // ALL OTHER ERRORS
-      throw new Error(
-        `There has been an error: ${response.status} ${response.statusText}`,
-      );
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Error");
     }
-    }
+    return response.json();
   })
   .then((allData) => {
-    userTrips.push(allData)
+    userTrips.push(allData.newTrip)
     console.log(allDestinations, "<---- after push destinations")
     renderTrips(userTrips, allDestinations)
 })
