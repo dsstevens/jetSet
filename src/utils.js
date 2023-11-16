@@ -1,7 +1,3 @@
-import { startDate, endDate } from "./scripts"
-
-let currentTraveler 
-
 //TRIP FNS
 
 export const filterTripsUser = (userId, trips) => {
@@ -22,23 +18,8 @@ export const determineDestination = (tripDetail, destinations) => {
     return yearlyTrips
 }
 
-export const createTrip = (trip) => {
-    trip = {
-      id: Date.now(),
-      userID: 3 || currentTraveler.id,
-      destinationID:  parseInt(destinationList.value),
-      travelers: parseInt(numberTravelers.value),
-      date: formatDate(startDate.value),
-      duration: calculateDuration(startDate.value, endDate.value),
-      status: "pending",
-      suggestedActivities: []
-    };
-    return trip
-  }
-
-
 //TIME FUNCTIONS
-const formatDate = (dateString) => {
+export const formatDate = (dateString) => {
   return dateString.split('-').join('/');
 };
 

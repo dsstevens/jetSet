@@ -10,9 +10,7 @@ export const renderTrips = (trips, destinations) => {
   //refactor:: user without past/pending status for trip view
   tripList.innerHTML = ''
   trips.forEach(element => {
-  console.log(element, "<--- element in trips")
   const matchingDestination = destinations.find(destination => {
-    console.log(destinations, "<-- destinations in forEach")
     return destination.id === element.destinationID
   })
   tripList.innerHTML += `
