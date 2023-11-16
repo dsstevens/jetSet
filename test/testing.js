@@ -92,4 +92,21 @@ describe('determineDestination', () => {
     expect(duration).to.equal(0);
   });
  });
+
+ describe('estimateTripCost', () => {
+  it('should be a function', () => {
+    expect(typeof estimateTripCost).to.equal('function');
+  });
  
+  it('should return the correct trip cost', () => {
+    const tripInfo = trips[0];
+    const cost = estimateTripCost(tripInfo, destinations);
+    expect(cost).to.be.a('number');
+  });
+ 
+  it('should return 0 if no matching destination', () => {
+    const tripInfo = { destinationID: 100, travelers: 5, duration: 8 };
+    const cost = estimateTripCost(tripInfo, destinations);
+    expect(cost).to.equal(0);
+  });
+ });
