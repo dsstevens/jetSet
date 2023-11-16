@@ -19,3 +19,21 @@ describe('See if the tests are running', function() {
     expect(true).to.equal(true);
   });
 });
+
+describe('determineDestination', () => {
+  it('should be a function', () => {
+    expect(typeof determineDestination).to.equal('function');
+  });
+ 
+  it('should return the correct destination', () => {
+    const tripDetail = trips[0];
+    const destination = determineDestination(tripDetail, destinations);
+    expect(destination.id).to.equal(tripDetail.destinationID);
+  });
+ 
+  it('should return undefined if no matching destination', () => {
+    const tripDetail = { destinationID: 100 };
+    const destination = determineDestination(tripDetail, destinations);
+    expect(destination).to.be.undefined;
+  });
+ });
