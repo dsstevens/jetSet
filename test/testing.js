@@ -37,3 +37,20 @@ describe('determineDestination', () => {
     expect(destination).to.be.undefined;
   });
  });
+
+ describe('filterYearlyTrips', () => {
+  it('should be a function', () => {
+    expect(typeof filterYearlyTrips).to.equal('function');
+  });
+ 
+  it('should return the correct trips for the current year', () => {
+    const yearlyTrips = filterYearlyTrips(trips);
+    expect(yearlyTrips.length).to.equal(3);
+  });
+ 
+  it('should return an empty array if no trips for the current year', () => {
+    const yearlyTrips = filterYearlyTrips([]);
+    expect(yearlyTrips.length).to.equal(0);
+  });
+ });
+ 
