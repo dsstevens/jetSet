@@ -110,3 +110,21 @@ describe('determineDestination', () => {
     expect(cost).to.equal(0);
   });
  });
+
+ describe('calculateYearlyCost', () => {
+  it('should be a function', () => {
+    expect(typeof calculateYearlyCost).to.equal('function');
+  });
+ 
+  it('should return the correct yearly cost', () => {
+    const yearlyTrips = filterYearlyTrips(trips);
+    const cost = calculateYearlyCost(yearlyTrips, destinations);
+    expect(cost).to.be.a('number');
+  });
+ 
+  it('should return 0 if no trips', () => {
+    const cost = calculateYearlyCost([], destinations);
+    expect(cost).to.equal(0);
+  });
+ });
+ 
