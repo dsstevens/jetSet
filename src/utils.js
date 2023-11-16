@@ -16,7 +16,7 @@ export const determineDestination = (tripDetail, destinations) => {
 
  export const filterYearlyTrips = (userTrips) => {
   const currentYear = new Date("11/11/2022").getFullYear()
-  // console.log(currentYear)
+
     const yearlyTrips = userTrips.filter(trip => new Date(trip.date).getFullYear() === currentYear)
     // console.log(yearlyTrips)
     return yearlyTrips
@@ -38,14 +38,6 @@ export const createTrip = (trip) => {
 
 
 //TIME FUNCTIONS
-
-export const calculateDays = (startDate, endDate) => {
-  const start = new Date(startDate);
-  const end = new Date(endDate);
-  const duration = (end - start) / (1000 * 60 * 60 * 24); // Convert milliseconds to days
-  return duration;
-}
-
 const formatDate = (dateString) => {
   return dateString.split('-').join('/');
 };
